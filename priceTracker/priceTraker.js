@@ -12,7 +12,7 @@ const getPrice = async (url) => {
     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/115.0",
   ]
   
-  const randomDelay = () => new Promise((res) => setTimeout(res , Math.floor(Math.random() * 2000) + 1000));
+  const randomDelay = () => new Promise((res) => setTimeout(res , Math.floor(Math.random() * 1000) + 500));
 
   try {
     const { data } = await axios.get(url, {

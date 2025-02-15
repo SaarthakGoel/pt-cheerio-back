@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const puppeteer = require("puppeteer");
 const {trackProduct, getPrice} = require("./priceTracker/priceTraker");
 const { default: mongoose } = require("mongoose");
 const TrackingProducts = require("./database/TrackingProducts");

@@ -54,7 +54,7 @@ const trackProduct = async (name, price, link, email) => {
   } else {
     console.log("Error in creating document");
   }
-  test();
+  //test();
 }
 
 async function test() {

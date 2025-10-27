@@ -37,9 +37,11 @@ const getPrice = async (url) => {
     const { data } = await axios.get(url, {
       headers: { "User-Agent": userAgents[Math.floor(Math.random() * userAgents.length)] }
     });
+
+    console.log("data" , data);
     const $ = cheerio.load(data);
     await randomDelay()
-    const price = $("#priceblock_ourprice").text().trim() || $(".a-price-whole").first().text().trim();
+    const price = $('#corePrice_feature_div span.a-offscreen').first().text().trim();
     return price || "Price Not Found";
   } catch (error) {
     console.error("Error fetching price:", error.message)

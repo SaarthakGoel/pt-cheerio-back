@@ -11,8 +11,8 @@ const getPrice = async (url) => {
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/115.0",
   ]
-  
-  const randomDelay = () => new Promise((res) => setTimeout(res , Math.floor(Math.random() * 1000) + 500));
+
+  const randomDelay = () => new Promise((res) => setTimeout(res, Math.floor(Math.random() * 1000) + 500));
 
   try {
     const { data } = await axios.get(url, {
@@ -54,28 +54,34 @@ const trackProduct = async (name, price, link, email) => {
   } else {
     console.log("Error in creating document");
   }
-  //test();
+  test();
 }
 
 async function test() {
-  console.log("Checking price updates...")
-  const productsDB = await TrackingProducts.find();
-  console.log(productsDB);
 
-  productsDB.map(async (product) => {
+  try {
+    console.log("Checking price updates...")
+    const productsDB = await TrackingProducts.find();
+    console.log(productsDB);
 
-    const { name, price, link, affiliateLink, email } = product;
-    const currentPrice = 1;
+    productsDB.map(async (product) => {
 
-    console.log(`Checking ${email}'s product: ${currentPrice}`);
+      const { name, price, link, affiliateLink, email } = product;
+      const currentPrice = 1;
 
-    if (0 < Number(price.replace(",", ""))) {
-      console.log(`Price dropped for ${email}`);
+      console.log(`Checking ${email}'s product: ${currentPrice}`);
 
-      await sendEmail(email, name, affiliateLink, currentPrice);
-    };
-  });
+      if (0 < Number(price.replace(",", ""))) {
+        console.log(`Price dropped for ${email}`);
+
+        await sendEmail(email, name, affiliateLink, currentPrice);
+      };
+    });
+  } catch (err) {
+    console.log("error", err);
+  }
+
 }
 
 
-module.exports = { trackProduct , getPrice };
+module.exports = { trackProduct, getPrice };

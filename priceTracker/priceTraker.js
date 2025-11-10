@@ -38,7 +38,7 @@ const getPrice = async (url) => {
       headers: { "User-Agent": userAgents[Math.floor(Math.random() * userAgents.length)] }
     });
 
-    console.log("data" , data);
+    //console.log("data" , data);
     const $ = cheerio.load(data);
     await randomDelay()
     const price = $('#corePrice_feature_div span.a-offscreen').first().text().trim();
